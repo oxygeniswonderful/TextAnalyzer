@@ -9,30 +9,34 @@ public class ApplyAnalysis {
 
         while (!symbols.isEmpty()) {
             symbol = symbols.poll();
+            
             if (tools.isOrdinarySymbol(latestElement) & symbol.equals(" "))
                 continue;
-            if (!tools.isOrdinarySymbol(symbol)) {
+            
+            if (tools.isSemicolon(latestElement) & !tools.isRightBrace(symbol))
+                System.out.print(indent);
+
+            if(tools.isRightBrace(latestElement) & !tools.isOrdinarySymbol(symbol))
+                System.out.print(indent);
+
+            if (!tools.isOrdinarySymbol(symbol))
                 System.out.print(symbol);
-            }
+
             if (tools.isLeftBrace(symbol)) {
                 count += 4;
                 indent = tools.createIndent(count);
-                System.out.print(symbol);
-                System.out.print("\n");
+                System.out.println(symbol);
                 System.out.print(indent);
             }
             if (tools.isRightBrace(symbol)) {
                 count -= 4;
                 indent = tools.createIndent(count);
-                System.out.print(symbol);
-                System.out.print("\n");
                 System.out.print(indent);
+                System.out.println(symbol);
             }
-            if (tools.isSemicolon(symbol)) {
-                System.out.print(symbol);
-                System.out.print("\n");
-                System.out.print(indent);
-            }
+            if (tools.isSemicolon(symbol))
+                System.out.println(symbol);
+            
             latestElement = symbol;
         }
     }
