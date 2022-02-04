@@ -12,8 +12,8 @@ import java.io.FileWriter;
 
 
 public class Main {
-    private static final String PATH_OF_SOURCE = "/Users/admin/Desktop/text.txt";
-    private static final String PATH_OF_ANSWER = "/Users/admin/Desktop/answer.txt";
+    private static final String PATH_OF_SOURCE = "/text.txt";
+    private static final String PATH_OF_ANSWER = "/answer.txt";
 
     public static void main(String[] args) throws Exception {
         BufferedReader reader;
