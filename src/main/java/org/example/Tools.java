@@ -2,10 +2,10 @@ package org.example;
 
 public class Tools {
     public static String createIndent(int count) {
-        String indent = "";
+        StringBuilder indent = new StringBuilder();
         for (int i = 0; i < count; i++)
-            indent += " ";
-        return indent;
+            indent.append(" ");
+        return indent.toString();
     }
 
     public static boolean isLeftBrace(Character symbol) {
@@ -18,7 +18,6 @@ public class Tools {
         return symbol.equals(';');
     }
     public static boolean isOrdinarySymbol(Character symbol) {
-        Tools tools = new Tools();
-        return (tools.isLeftBrace(symbol) | tools.isRightBrace(symbol) | tools.isSemicolon(symbol));
+        return (Tools.isLeftBrace(symbol) | Tools.isRightBrace(symbol) | Tools.isSemicolon(symbol));
     }
 }
