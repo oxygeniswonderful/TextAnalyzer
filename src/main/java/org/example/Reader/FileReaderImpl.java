@@ -29,12 +29,11 @@ public class FileReaderImpl implements IReader, IAutoClose {
             boolean answ;
             if (indicator == -1) {
                 indicator = bufferedReader.read();
-            }
-            if (indicator != -1) {
-                answ = true;
-            }
-            else {
                 answ = false;
+            }
+          
+            else {
+                answ = true;
             }
             return answ;
         } catch (IOException e) {
