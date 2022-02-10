@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.IOException;
 
-public interface IAutoClose {
-    void autoClose() throws IOException;
+public interface IAutoClose extends AutoCloseable {
+    @Override
+    void close() throws IOException, AutoCloseException;
 }
