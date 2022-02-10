@@ -26,7 +26,17 @@ public class FileReaderImpl implements IReader, IAutoClose {
     @Override
     public boolean hasChars() throws ReaderException {
         try {
-            return bufferedReader.ready();
+            boolean answ;
+            if (indicator == -1) {
+                indicator = bufferedReader.read();
+            }
+            if (indicator != -1) {
+                answ = true;
+            }
+            else {
+                answ = false;
+            }
+            return answ;
         } catch (IOException e) {
             throw new ReaderException("Can't read the file");
         }
@@ -35,7 +45,15 @@ public class FileReaderImpl implements IReader, IAutoClose {
     @Override
     public char readChars() throws ReaderException {
         try {
-            return (char) bufferedReader.read();
+            if (indicator == -1) {
+                indicator = bufferedReader.read();
+                return (char) indicator;
+            }
+            else {
+                int currentIndicator = indicator;
+                indicator = -1;
+                return (char) currentIndicator;
+            }
         } catch (IOException e) {
             throw new ReaderException(" Can't read symbol from the file");
         }
