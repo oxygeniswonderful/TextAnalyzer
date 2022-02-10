@@ -29,7 +29,6 @@ public class FileReaderImpl implements IReader, IAutoClose {
             boolean answ = false;
             if (indicator == -1) {
                 indicator = bufferedReader.read();
-           
             }
           
             if (indicator != -1) {
