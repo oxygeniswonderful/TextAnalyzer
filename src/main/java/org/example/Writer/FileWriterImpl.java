@@ -22,12 +22,12 @@ public class FileWriterImpl implements IWriter, IAutoClose {
     }
 
     @Override
-    public void autoClose() throws IOException {
+    public void close() throws AutoCloseException {
         if (bufferedWriter != null) {
             try {
                 bufferedWriter.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new AutoCloseException("Can't close the file");
             }
         }
     }
