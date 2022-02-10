@@ -12,12 +12,13 @@ public class FileReaderImpl implements IReader, IAutoClose {
     }
 
     @Override
-    public void autoClose() {
+    public void close() throws AutoCloseException {
         if (bufferedReader != null) {
             try {
                 bufferedReader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new AutoCloseException("Can't close the file");
+
             }
         }
     }
