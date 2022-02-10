@@ -26,13 +26,13 @@ public class FileReaderImpl implements IReader, IAutoClose {
     @Override
     public boolean hasChars() throws ReaderException {
         try {
-            boolean answ;
+            boolean answ = false;
             if (indicator == -1) {
                 indicator = bufferedReader.read();
-                answ = false;
+           
             }
           
-            else {
+            if (indicator != -1) {
                 answ = true;
             }
             return answ;
