@@ -16,11 +16,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         try (
-                BufferedReader reader = new BufferedReader(new FileReader(PATH_OF_SOURCE));
-                FileReaderImpl fileReader = new FileReaderImpl(reader);
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(PATH_OF_ANSWER));
-                FileWriterImpl fileWriter = new FileWriterImpl(bufferedWriter);
+        FileReaderImpl fileReader = new FileReaderImpl(new BufferedReader(new FileReader(PATH_OF_SOURCE)));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(PATH_OF_ANSWER));
+        FileWriterImpl fileWriter = new FileWriterImpl(bufferedWriter);
         ) {
+
             Formatter formatter = new Formatter(fileReader, fileWriter);
             formatter.format();
         } catch (ReaderException | WriterException e) {
