@@ -1,52 +1,53 @@
-package org.example.textanalyzer;
+import org.example.Tools;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.example.Tools;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 class ToolsTest {
 
-    private Tools tools;
-
-    @BeforeEach
-    void setUp() {
-        tools = new Tools();
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     void createIndent() {
-        String expected = "    ";
-        String actual = tools.createIndent(4);
+        String actual, expected = "    ";
+        actual = Tools.createIndent(4);
         assertEquals(actual, expected);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void isLeftBrace() {
-        boolean expected = true;
-        boolean actual = tools.isLeftBrace('{');
-        assertEquals(actual, expected);
+        boolean actual1, expected1 = true;
+        boolean actual2, expected2 = false;
+        actual1 = Tools.isLeftBrace("{");
+        actual2 = Tools.isLeftBrace("}");
+        assertEquals(actual1, expected1);
+        assertEquals(actual2, expected2);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void isRightBrace() {
-        boolean expected = true;
-        boolean actual = tools.isRightBrace('}');
-        assertEquals(actual, true);
+        boolean actual1, expected1 = true;
+        boolean actual2, expected2 = false;
+        actual1 = Tools.isRightBrace("}");
+        actual2 = Tools.isRightBrace("{");
+        assertEquals(actual1, expected1);
+        assertEquals(actual2, expected2);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void isSemicolon() {
-        boolean expected = true;
-        boolean actual = tools.isSemicolon(';');
-        assertEquals(actual, expected);
+        boolean actual1, expected1 = true;
+        boolean actual2,expected2 = false;
+        actual1 = Tools.isSemicolon(";");
+        actual2 = Tools.isSemicolon(":");
+        assertEquals(actual1, expected1);
+        assertEquals(actual2, expected2);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void isOrdinarySymbol() {
-        boolean expected = false;
-        boolean actual = tools.isOrdinarySymbol('a');
-        assertEquals(actual, expected);
+        boolean actual1, expected1 = false;
+        boolean actual2, expected2 = true;
+        actual1 = Tools.isOrdinarySymbol("a");
+        actual2 = Tools.isOrdinarySymbol("{");
+        assertEquals(actual1, expected1);
+        assertEquals(actual2, expected2);
     }
 }
