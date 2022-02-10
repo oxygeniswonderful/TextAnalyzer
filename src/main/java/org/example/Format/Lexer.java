@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class Lexer {
 
-    IReader reader;
+    private final IReader reader;
 
     public Lexer(IReader reader) {
         this.reader = reader;
@@ -17,15 +17,13 @@ public class Lexer {
     public Queue<String> analyse() throws ReaderException {
 
         Queue<String> lexemes = new ArrayDeque<>();
-        Character symbol;
         StringBuilder lexeme = new StringBuilder();
 
         while(reader.hasChars()) {
-            symbol = reader.readChar();
+            Character symbol = reader.readChar();
             if (Character.isLetterOrDigit(symbol)) {
                 lexeme.append(symbol);
-            }
-            else {
+            } else {
                 lexemes.add(String.valueOf(lexeme));
                 lexemes.add(String.valueOf(symbol));
                 lexeme = new StringBuilder();
