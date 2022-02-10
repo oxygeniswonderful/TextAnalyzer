@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StringReaderImplTest {
 
     @Test
-    void hasChars() throws ReaderException {
+    void hasChars() {
         String string1 = "flex = chill + rofl";
         String string2 = "";
         boolean actual1 = true;
@@ -22,11 +22,11 @@ class StringReaderImplTest {
     }
 
     @Test
-    void readChars() throws ReaderException {
+    void readChars() {
         String string1 = "flex = chill + rofl";
         StringReaderImpl stringReader1 = new StringReaderImpl(string1);
         for (char symbol: string1.toCharArray()) {
-            assertEquals(symbol, stringReader1.readChars());
+            assertEquals(symbol, stringReader1.readChar());
         }
     }
 }

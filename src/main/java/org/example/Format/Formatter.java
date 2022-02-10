@@ -7,10 +7,10 @@ import org.example.Writer.WriterException;
 
 import java.util.Queue;
 
-public class Formatter implements IFormatter{
+public class Formatter implements IFormatter {
 
-    IReader reader;
-    IWriter writer;
+    private final IReader reader;
+    private final IWriter writer;
 
     public Formatter(IReader reader, IWriter writer) {
         this.reader = reader;

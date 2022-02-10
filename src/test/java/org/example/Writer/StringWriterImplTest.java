@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StringWriterImplTest {
 
     @Test
-    void writeChar() throws WriterException {
+    void writeChar() {
         String string = "flex = chill + rofl";
         StringBuilder stringBuilder = new StringBuilder();
         StringWriterImpl stringWriter = new StringWriterImpl(stringBuilder);

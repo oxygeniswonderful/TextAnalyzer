@@ -1,6 +1,7 @@
 package org.example.Writer;
 
-import org.example.IAutoClose;
+import org.example.AutoClose.AutoCloseException;
+import org.example.AutoClose.IAutoClose;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

@@ -1,6 +1,7 @@
 package org.example.Format;
 
 public class Tools {
+
     public static String createIndent(int count) {
         StringBuilder indent = new StringBuilder();
         for (int i = 0; i < count; i++)
@@ -11,12 +12,15 @@ public class Tools {
     public static boolean isLeftBrace(String symbol) {
         return symbol.equals("{");
     }
+
     public static boolean isRightBrace(String symbol) {
         return symbol.equals("}");
     }
+
     public static boolean isSemicolon(String symbol) {
         return symbol.equals(";");
     }
+
     public static boolean isOrdinarySymbol(String symbol) {
         return (Tools.isLeftBrace(symbol) | Tools.isRightBrace(symbol) | Tools.isSemicolon(symbol));
     }

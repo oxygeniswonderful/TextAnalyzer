@@ -21,7 +21,7 @@ public class Lexer {
         StringBuilder lexeme = new StringBuilder();
 
         while(reader.hasChars()) {
-            symbol = reader.readChars();
+            symbol = reader.readChar();
             if (Character.isLetterOrDigit(symbol)) {
                 lexeme.append(symbol);
             }

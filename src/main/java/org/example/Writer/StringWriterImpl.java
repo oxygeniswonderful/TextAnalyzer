@@ -1,6 +1,7 @@
 package org.example.Writer;
 
 public class StringWriterImpl implements IWriter {
+
     private StringBuilder string;
 
     public StringWriterImpl(StringBuilder string) {
@@ -8,7 +9,7 @@ public class StringWriterImpl implements IWriter {
     }
 
     @Override
-    public void writeChar(String symbol) throws WriterException {
+    public void writeChar(String symbol) {
         string.append(symbol);
     }
 }

@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Format.Formatter;
 import org.example.Reader.ReaderException;
 import org.example.Reader.StringReaderImpl;
 import org.example.Writer.StringWriterImpl;
@@ -7,7 +8,6 @@ import org.example.Writer.WriterException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class FormatterTest {
 
@@ -35,8 +35,8 @@ class FormatterTest {
         String string4 = ";a";
         String expected4 = ";\n";
         init(string4, expected4);
-
     }
+
     void init(String string, String expected) throws WriterException, ReaderException {
         StringReaderImpl stringReader = new StringReaderImpl(string);
         StringBuilder stringBuilder = new StringBuilder();

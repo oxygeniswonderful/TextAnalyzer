@@ -1,17 +1,20 @@
-import org.example.Tools;
+package org.example.textanalyzer;
+
+import org.example.Format.Tools;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ToolsTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void createIndent() {
         String actual, expected = "    ";
         actual = Tools.createIndent(4);
         assertEquals(actual, expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void isLeftBrace() {
         boolean actual1, expected1 = true;
         boolean actual2, expected2 = false;
@@ -21,7 +24,7 @@ class ToolsTest {
         assertEquals(actual2, expected2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void isRightBrace() {
         boolean actual1, expected1 = true;
         boolean actual2, expected2 = false;
@@ -31,7 +34,7 @@ class ToolsTest {
         assertEquals(actual2, expected2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void isSemicolon() {
         boolean actual1, expected1 = true;
         boolean actual2,expected2 = false;
@@ -41,7 +44,7 @@ class ToolsTest {
         assertEquals(actual2, expected2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void isOrdinarySymbol() {
         boolean actual1, expected1 = false;
         boolean actual2, expected2 = true;

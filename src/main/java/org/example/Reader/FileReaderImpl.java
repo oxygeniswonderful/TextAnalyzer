@@ -1,14 +1,30 @@
 package org.example.Reader;
-import org.example.IAutoClose;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import org.example.AutoClose.AutoCloseException;
+import org.example.AutoClose.IAutoClose;
 
 public class FileReaderImpl implements IReader, IAutoClose {
-    private final BufferedReader bufferedReader;
 
-    public FileReaderImpl(BufferedReader bufferedReader) {
+    private final BufferedReader bufferedReader;
+    private int readedSymbol;
+
+    public FileReaderImpl(BufferedReader bufferedReader) throws ReaderException {
         this.bufferedReader = bufferedReader;
+        readedSymbol = readSymbol();
+    }
+
+    @Override
+    public boolean hasChars() {
+        return readedSymbol != -1;
+    }
+
+    @Override
+    public char readChar() throws ReaderException {
+        char readedChar = (char) readedSymbol;
+        readedSymbol = readSymbol();
+        return readedChar;
     }
 
     @Override
@@ -18,40 +34,13 @@ public class FileReaderImpl implements IReader, IAutoClose {
                 bufferedReader.close();
             } catch (IOException e) {
                 throw new AutoCloseException("Can't close the file");
-
             }
         }
     }
 
-    @Override
-    public boolean hasChars() throws ReaderException {
+    private int readSymbol() throws ReaderException {
         try {
-            boolean answ = false;
-            if (indicator == -1) {
-                indicator = bufferedReader.read();
-            }
-          
-            if (indicator != -1) {
-                answ = true;
-            }
-            return answ;
-        } catch (IOException e) {
-            throw new ReaderException("Can't read the file");
-        }
-    }
-
-    @Override
-    public char readChars() throws ReaderException {
-        try {
-            if (indicator == -1) {
-                indicator = bufferedReader.read();
-                return (char) indicator;
-            }
-            else {
-                int currentIndicator = indicator;
-                indicator = -1;
-                return (char) currentIndicator;
-            }
+            return bufferedReader.read();
         } catch (IOException e) {
             throw new ReaderException(" Can't read symbol from the file");
         }
