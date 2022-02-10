@@ -8,16 +8,16 @@ public class Tools {
         return indent.toString();
     }
 
-    public static boolean isLeftBrace(Character symbol) {
-        return symbol.equals('{');
+    public static boolean isLeftBrace(String symbol) {
+        return symbol.equals("{");
     }
-    public static boolean isRightBrace(Character symbol) {
-        return symbol.equals('}');
+    public static boolean isRightBrace(String symbol) {
+        return symbol.equals("}");
     }
-    public static boolean isSemicolon(Character symbol) {
-        return symbol.equals(';');
+    public static boolean isSemicolon(String symbol) {
+        return symbol.equals(";");
     }
-    public static boolean isOrdinarySymbol(Character symbol) {
+    public static boolean isOrdinarySymbol(String symbol) {
         return (Tools.isLeftBrace(symbol) | Tools.isRightBrace(symbol) | Tools.isSemicolon(symbol));
     }
 }
