@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         try (
-            FileReaderImpl fileReader = new FileReaderImpl(new BufferedReader(new FileReader(args[0])));
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(args[1]));
+            FileReaderImpl fileReader = new FileReaderImpl(new BufferedReader(new FileReader(args[0], StandardCharsets.UTF_8)));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(args[1], StandardCharsets.UTF_8));
             FileWriterImpl fileWriter = new FileWriterImpl(bufferedWriter);
         ) {
             Formatter formatter = new Formatter(fileReader, fileWriter);
