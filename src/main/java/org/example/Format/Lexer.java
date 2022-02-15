@@ -32,6 +32,7 @@ public class Lexer {
         while (lexemes.contains("")) {
             lexemes.remove("");
         }
+        lexemes.poll();
         return lexemes;
     }
 }
