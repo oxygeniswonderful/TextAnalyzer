@@ -1,16 +1,15 @@
 package org.example.Format;
-
 import org.example.Reader.IReader;
 import org.example.Reader.ReaderException;
 import org.example.Writer.IWriter;
 import org.example.Writer.WriterException;
-
 import java.util.Queue;
 
-public class Formatter implements IFormatter {
+public class Formatter implements IFormatter{
 
-    private final IReader reader;
-    private final IWriter writer;
+    IReader reader;
+    IWriter writer;
+
 
     public Formatter(IReader reader, IWriter writer) {
         this.reader = reader;
@@ -25,6 +24,7 @@ public class Formatter implements IFormatter {
         String indent = "";
         String latestElement = "";
         int count = 0;
+        int flag = 0;
 
 
         while (!lexemes.isEmpty()) {
@@ -35,53 +35,67 @@ public class Formatter implements IFormatter {
                 continue;
             }
 
-            if (Tools.isOrdinarySymbol(latestElement) & symbol.equals(" ")) {
+            if (Tools.isOrdinarySymbol(latestElement) & symbol.equals(" ") & flag == 0) {
                 continue;
             }
 
-            if (Tools.isLeftBrace(symbol) & !latestElement.equals(" ")) {
+            if (latestElement.equals("/") & symbol.equals("*")) {
+                flag = 1;
+            }
+
+            if (latestElement.equals("*") & symbol.equals("/")) {
+                writer.writeChar(symbol);
+                writer.writeChar("\n");
+                writer.writeChar(indent);
+                flag = 0;
+                continue;
+            }
+
+            if (Tools.isShift(symbol)) {
+                writer.writeChar(symbol);
+                writer.writeChar(indent);
+            }
+
+            if (Tools.isLeftBrace(symbol) & !latestElement.equals(" ") & flag == 0) {
                 writer.writeChar(" ");
-                //System.out.print(" ");
             }
 
-            if (Tools.isSemicolon(latestElement) & !Tools.isRightBrace(symbol)) {
+            if (Tools.isSemicolon(latestElement) & !Tools.isRightBrace(symbol) & flag == 0) {
                 writer.writeChar(indent);
-                //System.out.print(indent);
             }
 
-            if(Tools.isRightBrace(latestElement) & !Tools.isOrdinarySymbol(symbol)) {
+            if(Tools.isRightBrace(latestElement) & !Tools.isOrdinarySymbol(symbol) & flag == 0) {
                 writer.writeChar(indent);
-                //System.out.print(indent);
             }
 
             if (!Tools.isOrdinarySymbol(symbol)) {
                 writer.writeChar(symbol);
-                //System.out.print(symbol);
             }
 
-            if (Tools.isLeftBrace(symbol)) {
+            if (Tools.isLeftBrace(symbol) & flag == 0) {
                 count += 4;
                 indent = Tools.createIndent(count);
                 writer.writeChar(symbol);
                 writer.writeChar("\n");
-                //System.out.println(symbol);
                 writer.writeChar(indent);
-                //System.out.print(indent);
+               
             }
 
-            if (Tools.isRightBrace(symbol)) {
+            if ((Tools.isLeftBrace(symbol) | Tools.isRightBrace(symbol) | Tools.isSemicolon(symbol)) & flag == 1) {
+                writer.writeChar(symbol);
+            }
+
+            if (Tools.isRightBrace(symbol) & flag == 0) {
                 count -= 4;
                 indent = Tools.createIndent(count);
                 writer.writeChar(indent);
-                //System.out.print(indent);
                 writer.writeChar(symbol);
-                //System.out.println(symbol);
                 writer.writeChar("\n");
+
             }
 
-            if (Tools.isSemicolon(symbol)) {
+            if (Tools.isSemicolon(symbol) & flag == 0) {
                 writer.writeChar(symbol);
-                //System.out.println(symbol);
                 writer.writeChar("\n");
             }
             latestElement = symbol;
