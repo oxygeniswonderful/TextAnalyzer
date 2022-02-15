@@ -12,14 +12,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Main {
-    private static final String PATH_OF_SOURCE = "/text.txt";
-    private static final String PATH_OF_ANSWER = "/answer.txt";
 
     public static void main(String[] args) throws Exception {
 
         try (
-            FileReaderImpl fileReader = new FileReaderImpl(new BufferedReader(new FileReader(PATH_OF_SOURCE)));
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(PATH_OF_ANSWER));
+            FileReaderImpl fileReader = new FileReaderImpl(new BufferedReader(new FileReader(args[0])));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(args[1]));
             FileWriterImpl fileWriter = new FileWriterImpl(bufferedWriter);
         ) {
             Formatter formatter = new Formatter(fileReader, fileWriter);
