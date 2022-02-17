@@ -117,6 +117,12 @@ public class Formatter implements IFormatter{
                 logger.debug(token.getLexeme());
             }
 
+            if ((Tools.isLeftBrace(token.getLexeme()) | Tools.isRightBrace(token.getLexeme()) | Tools.isSemicolon(token.getLexeme())) & isComment == 1) {
+                System.out.print(token.getLexeme());
+                writer.writeChar(token.getLexeme());
+                logger.debug(token.getLexeme());
+            }
+
             if (Tools.isRightBrace(token.getLexeme()) & flag == 0 & isComment == 0) {
                 count -= 4;
                 indent = Tools.createIndent(count);
