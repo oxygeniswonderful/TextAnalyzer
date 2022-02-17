@@ -6,7 +6,6 @@ import org.example.Format.ILexer;
 import org.example.Format.Lexer;
 import org.example.Reader.ReaderException;
 import org.example.Reader.StringReaderImpl;
-import org.example.Token.TokenException;
 import org.example.Writer.StringWriterImpl;
 import org.example.Writer.WriterException;
 import org.junit.jupiter.api.Test;
@@ -41,9 +40,13 @@ class FormatterTest {
         String expected4 = ";\n";
         init(string4, expected4);
 
-        String string5 = "/* for(int i = 0; i <= 10; i++) { */";
-        String expected5 = "/* for(int i = 0; i <= 10; i++) { */\n";
+        String string5 = "// for(int i = 0; i <= 10; i++) {";
+        String expected5 = "// for(int i = 0;i <= 10;i++) {";
         init(string5, expected5);
+
+        String string6 = "/* for i in range(10): */";
+        String expected6 = "/* for i in range(10): */\n";
+        init(string6, expected6);
 
     }
     void init(String string, String expected) throws WriterException, ReaderException {
