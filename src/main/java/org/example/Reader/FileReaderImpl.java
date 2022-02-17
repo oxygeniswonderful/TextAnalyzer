@@ -1,4 +1,5 @@
 package org.example.Reader;
+
 import org.example.AutoClose.AutoCloseException;
 import org.example.AutoClose.IAutoClose;
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ public class FileReaderImpl implements IReader, IAutoClose {
     }
 
     @Override
-    public char readChars() throws ReaderException {
+    public char readChar() throws ReaderException {
         char readedChar = (char) readedSymbol;
         readedSymbol = readSymbol();
         return readedChar;

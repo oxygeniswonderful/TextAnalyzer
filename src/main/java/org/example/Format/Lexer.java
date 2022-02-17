@@ -32,7 +32,7 @@ public class Lexer implements ILexer {
         }
 
         while (reader.hasChars() & flag == 1) {
-            Character symbol = reader.readChars();
+            Character symbol = reader.readChar();
 
             if (!lexemes.isEmpty()) {
                 flag = 0;

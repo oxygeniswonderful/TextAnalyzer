@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.Format.Formatter;
+import org.example.Format.IFormatter;
+import org.example.Format.ILexer;
 import org.example.Format.Lexer;
 import org.example.Reader.FileReaderImpl;
 import org.example.Reader.ReaderException;
@@ -13,7 +15,6 @@ import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);

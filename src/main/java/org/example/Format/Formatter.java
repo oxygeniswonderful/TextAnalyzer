@@ -1,4 +1,5 @@
 package org.example.Format;
+
 import org.example.Token.IToken;
 import org.example.Reader.ReaderException;
 import org.example.Writer.IWriter;
