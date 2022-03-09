@@ -23,7 +23,7 @@ public class TokenBuilder {
         } catch (ReaderException e) {
             logger.error(" Can't read symbol from the file" + e);
         } catch (WriterException e) {
-            logger.error("Can't close the file" + e);
+            logger.error("Can't write the symbol to the file" + e);
         }
         lexerContext.cleanBuffer();
         if (flag) {
