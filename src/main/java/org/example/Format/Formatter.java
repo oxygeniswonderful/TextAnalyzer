@@ -31,10 +31,10 @@ public class Formatter implements IFormatter{
 
         if (token.getName().equals("LINE BREAK") & lexerContext.getIsComment() == 1) {
             lexerContext.setIsComment(0);
-            System.out.print(token.getLexeme());
+            //System.out.print(token.getLexeme());
             lexerContext.WriteLexeme(token.getLexeme());
             lexerContext.WriteLexeme(lexerContext.getLatestIndent());
-            System.out.print(lexerContext.getLatestIndent());
+            //System.out.print(lexerContext.getLatestIndent());
             logger.debug(token.getLexeme());
             logger.debug(lexerContext.getLatestIndent());
         }
@@ -46,8 +46,8 @@ public class Formatter implements IFormatter{
         if (token.getLexeme().equals("*/")) {
             logger.debug(token.getLexeme() + "\n");
             logger.debug(lexerContext.getLatestIndent());
-            System.out.println(token.getLexeme());
-            System.out.print(lexerContext.getLatestIndent());
+            //System.out.println(token.getLexeme());
+            //System.out.print(lexerContext.getLatestIndent());
             lexerContext.WriteLexeme(token.getLexeme());
             lexerContext.WriteLexeme("\n");
             lexerContext.WriteLexeme(lexerContext.getLatestIndent());
@@ -56,25 +56,25 @@ public class Formatter implements IFormatter{
 
         if (Tools.isLeftBrace(token.getLexeme()) & lexerContext.getFlagOfMultiComment() == 0 & !lexerContext.getLatestElement().equals(" ")) {
             lexerContext.WriteLexeme(" ");
-            System.out.print(" ");
+            //System.out.print(" ");
             logger.debug(" ");
         }
 
             if (Tools.isSemicolon(lexerContext.getLatestElement()) & !Tools.isRightBrace(token.getLexeme()) & lexerContext.getFlagOfMultiComment() == 0 & lexerContext.getIsComment() == 0) {
                 lexerContext.WriteLexeme(lexerContext.getLatestIndent());
-                System.out.print(lexerContext.getLatestIndent());
+                //System.out.print(lexerContext.getLatestIndent());
                 logger.debug(lexerContext.getLatestIndent());
             }
 
             if(Tools.isRightBrace(lexerContext.getLatestElement()) & !Tools.isOrdinarySymbol(token.getLexeme()) & lexerContext.getFlagOfMultiComment() == 0 & lexerContext.getIsComment() == 0) {
                 lexerContext.WriteLexeme(lexerContext.getLatestIndent());
-                System.out.print(lexerContext.getLatestIndent());
+                //System.out.print(lexerContext.getLatestIndent());
                 logger.debug(lexerContext.getLatestIndent());
             }
 
             if (!Tools.isOrdinarySymbol(token.getLexeme())) {
                 lexerContext.WriteLexeme(token.getLexeme());
-                System.out.print(token.getLexeme());
+                //System.out.print(token.getLexeme());
                 logger.debug(token.getLexeme());
             }
 
@@ -83,22 +83,22 @@ public class Formatter implements IFormatter{
                 lexerContext.setIndent(Tools.createIndent(lexerContext.getCountOfIndent()));
                 lexerContext.WriteLexeme(token.getLexeme());
                 lexerContext.WriteLexeme("\n");
-                System.out.println(token.getLexeme());
+                //System.out.println(token.getLexeme());
                 logger.debug(token.getLexeme() + "\n");
-                System.out.println(lexerContext.getLatestIndent());
+                //System.out.println(lexerContext.getLatestIndent());
                 lexerContext.WriteLexeme(lexerContext.getLatestIndent());
-                System.out.print(lexerContext.getLatestIndent());
+                //System.out.print(lexerContext.getLatestIndent());
                 logger.debug(lexerContext.getLatestIndent());
             }
 
             if ((Tools.isLeftBrace(token.getLexeme()) | Tools.isRightBrace(token.getLexeme()) | Tools.isSemicolon(token.getLexeme())) & lexerContext.getFlagOfMultiComment() == 1) {
-                System.out.print(token.getLexeme());
+                //System.out.print(token.getLexeme());
                 lexerContext.WriteLexeme(token.getLexeme());
                 logger.debug(token.getLexeme());
             }
 
             if ((Tools.isLeftBrace(token.getLexeme()) | Tools.isRightBrace(token.getLexeme()) | Tools.isSemicolon(token.getLexeme())) & lexerContext.getIsComment() == 1) {
-                System.out.print(token.getLexeme());
+                //System.out.print(token.getLexeme());
                 lexerContext.WriteLexeme(token.getLexeme());
                 logger.debug(token.getLexeme());
             }
@@ -107,9 +107,9 @@ public class Formatter implements IFormatter{
                 lexerContext.setCount(-4);
                 lexerContext.setIndent(Tools.createIndent(lexerContext.getCountOfIndent()));
                 lexerContext.WriteLexeme(lexerContext.getLatestIndent());
-                System.out.print(lexerContext.getLatestIndent());
+                //System.out.print(lexerContext.getLatestIndent());
                 lexerContext.WriteLexeme(token.getLexeme());
-                System.out.println(token.getLexeme());
+                //System.out.println(token.getLexeme());
                 logger.debug(lexerContext.getLatestIndent());
                 logger.debug(token.getLexeme() + "\n");
                 lexerContext.WriteLexeme("\n");
@@ -118,7 +118,7 @@ public class Formatter implements IFormatter{
 
             if (Tools.isSemicolon(token.getLexeme()) & lexerContext.getFlagOfMultiComment() == 0 & lexerContext.getIsComment() == 0) {
                 lexerContext.WriteLexeme(token.getLexeme());
-                System.out.println(token.getLexeme());
+                //System.out.println(token.getLexeme());
                 logger.debug(token.getLexeme() + "\n");
                 lexerContext.WriteLexeme("\n");
             }
