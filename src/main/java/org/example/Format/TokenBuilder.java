@@ -3,8 +3,11 @@ package org.example.Format;
 import org.example.Reader.ReaderException;
 import org.example.Token.TokenImpl;
 import org.example.Writer.WriterException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TokenBuilder {
+    private final Logger logger = LoggerFactory.getLogger(TokenBuilder.class);
 
     public TokenImpl buildToken(LexerContext lexerContext, boolean flag, char symbol) {
         String tokenName = lexerContext.getTokenName();
@@ -14,15 +17,13 @@ public class TokenBuilder {
         //DeleteFromQThread<IToken> deleteFromQThread = new DeleteFromQThread<>(q);
         //putToQThread.run();
         //deleteFromQThread.run();
-        System.out.println(lexerContext);
-        //lexerContext.WriteLexeme(lexerContext.getTokenLexeme());
         IFormatter formatter = new Formatter(lexerContext);
         try {
             formatter.format(new TokenImpl(tokenName, tokenLexeme.toString()));
         } catch (ReaderException e) {
-            e.printStackTrace();
+            logger.error(" Can't read symbol from the file" + e);
         } catch (WriterException e) {
-            e.printStackTrace();
+            logger.error("Can't close the file" + e);
         }
         lexerContext.cleanBuffer();
         if (flag) {
