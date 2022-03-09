@@ -20,8 +20,15 @@ public class Tools {
     public static boolean isShift(String symbol) {
         return symbol.equals("\n");
     }
-
     public static boolean isOrdinarySymbol(String symbol) {
         return (Tools.isLeftBrace(symbol) | Tools.isRightBrace(symbol) | Tools.isSemicolon(symbol) | Tools.isShift(symbol));
+    }
+    public static boolean isDigitOrLetterForString(String s) {
+        for (char c: s.toCharArray()) {
+            if (!Character.isLetterOrDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
