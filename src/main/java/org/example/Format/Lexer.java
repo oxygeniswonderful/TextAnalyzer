@@ -47,7 +47,6 @@ public class Lexer implements ILexer {
             }
         }
         TokenImpl t = new TokenImpl(lexerContext.getTokenName(), lexerContext.getTokenLexeme().toString());
-        System.out.println(lexerContext.getTokenLexeme().toString() + " " + lexerContext.getTokenName());
         return t;
     }
 
