@@ -26,9 +26,8 @@ public class Main {
                 FileWriterImpl fileWriter = new FileWriterImpl(new BufferedWriter(new FileWriter(args[1], StandardCharsets.UTF_8)));
         ) {
 
-            ILexer lexer = new Lexer(fileReader);
-            IFormatter formatter = new Formatter(lexer, fileWriter);
-            formatter.format();
+            Lexer lexer = new Lexer(fileReader, fileWriter);
+            lexer.readToken();
 
         } catch (ReaderException e) {
             logger.error("Exception while read/write file: {}", e.toString());
