@@ -51,7 +51,6 @@ class FormatterTest {
         StringWriterImpl stringWriter = new StringWriterImpl(stringBuilder);
         ILexer lexer = new Lexer(stringReader, stringWriter);
         lexer.readToken();
-        //System.out.println(stringBuilder.toString());
         assertEquals(stringBuilder.toString(), expected);
     }
 }
