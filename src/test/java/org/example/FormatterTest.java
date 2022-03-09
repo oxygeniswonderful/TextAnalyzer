@@ -4,6 +4,7 @@ import org.example.Format.Formatter;
 import org.example.Format.IFormatter;
 import org.example.Format.ILexer;
 import org.example.Format.Lexer;
+import org.example.Format.Lexer_v1;
 import org.example.Reader.ReaderException;
 import org.example.Reader.StringReaderImpl;
 import org.example.Writer.StringWriterImpl;
@@ -15,14 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FormatterTest {
 
-    @Test
+     @Test
     void format() throws WriterException, ReaderException {
 
-        String string = "    if (flex == rofl + chill ) { return KEK; }";
-        String expected = "if (flex == rofl + chill ) {\n" +
-                "    return KEK;\n" +
-                "}\n";
-        init(string, expected);
+         String string6 = "/* for i in range(10): ";
+         String expected6 = "/* for i in range(10): ";
+         init(string6, expected6);
 
         String string1 = ";";
         String expected1 = ";\n";
@@ -41,21 +40,18 @@ class FormatterTest {
         init(string4, expected4);
 
         String string5 = "// for(int i = 0; i <= 10; i++) {";
-        String expected5 = "// for(int i = 0;i <= 10;i++) {";
+        String expected5 = "// for(int i = 0; i <= 10; i++) {";
         init(string5, expected5);
 
-        String string6 = "/* for i in range(10): */";
-        String expected6 = "/* for i in range(10): */\n";
-        init(string6, expected6);
 
     }
     void init(String string, String expected) throws WriterException, ReaderException {
         StringReaderImpl stringReader = new StringReaderImpl(string);
         StringBuilder stringBuilder = new StringBuilder();
         StringWriterImpl stringWriter = new StringWriterImpl(stringBuilder);
-        ILexer lexer = new Lexer(stringReader);
-        IFormatter formatter = new Formatter(lexer, stringWriter);
-        formatter.format();
+        ILexer lexer = new Lexer(stringReader, stringWriter);
+        lexer.readToken();
+        //System.out.println(stringBuilder.toString());
         assertEquals(stringBuilder.toString(), expected);
     }
 }
