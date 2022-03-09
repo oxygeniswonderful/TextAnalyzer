@@ -9,10 +9,19 @@ public class LexerContext {
     private StringBuilder buffer;
     private IToken token;
 
-    public LexerContext() {
+    public LexerContext(IWriter writer) {
         this.tokenName = "";
         this.tokenLexeme = new StringBuilder();
         this.buffer = new StringBuilder();
+        this.writer = writer;
+    }
+
+    public void WriteLexeme(String lexemeToWrite) {
+        try {
+            writer.writeChar(lexemeToWrite);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getTokenName() {
