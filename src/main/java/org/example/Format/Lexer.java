@@ -31,23 +31,18 @@ public class Lexer implements ILexer {
 
         State state = new State("initial");
 
-        while (reader.hasChars() && state != null) {
-            state =  stateMachineStep(reader, state, lexerContext);
-            if (state.getState().equals("END")) {
-                IReader readerFromBuffer = new StringReaderImpl(lexerContext.getBuffer().toString());
-                state = new State("initial");
-                if (readerFromBuffer.hasChars()) {
-                    state = stateMachineStep(readerFromBuffer, state, lexerContext);
-                }
-                if (state.getState().equals("END")) {
-                    state = new State("initial");
-                    lexerContext.cleanBuffer();
-                    lexerContext.clean();
-                }
-            }
+        IReader bufferReader = new StringReaderImpl(lexerContext.getBuffer().toString());
+        while (bufferReader.hasChars() && state != null) {
+            state = stateMachineStep(bufferReader, state, lexerContext);
         }
-        TokenImpl t = new TokenImpl(lexerContext.getTokenName(), lexerContext.getTokenLexeme().toString());
-        return t;
+        
+        lexerContext.cleanBuffer();
+        
+        while (reader.hasChars() && state != null) {
+            state = stateMachineStep(reader, state, lexerContext);
+        }
+        
+        return new TokenImpl(lexerContext.getTokenName(), lexerContext.getTokenLexeme().toString());
     }
 
     public State stateMachineStep(IReader reader, State state, LexerContext lexerContext) throws ReaderException {
