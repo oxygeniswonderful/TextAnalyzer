@@ -11,7 +11,7 @@ public class CommandRepository {
         //initial
         commands.put(new Pair<>(new State("initial"), ' '), new TokenReady());
         commands.put(new Pair<>(new State("initial"), '/'), new Slash());
-        commands.put(new Pair<>(new State("initial"), '±'), new LetterDigit());
+        commands.put(new Pair<>(new State("initial"), '±'), new Other());
         commands.put(new Pair<>(new State("initial"), '{'), new TokenReady());
         commands.put(new Pair<>(new State("initial"), '}'), new TokenReady());
         commands.put(new Pair<>(new State("initial"), ';'), new TokenReady());
@@ -26,7 +26,7 @@ public class CommandRepository {
         commands.put(new Pair<>(new State("SLASH"), ' '), new TokenReadyForOther());
 
         //Letter or digit
-        commands.put(new Pair<>(new State("LetterDigit"),'±'), new LetterDigit());
+        commands.put(new Pair<>(new State("LetterDigit"),'±'), new Other());
         commands.put(new Pair<>(new State("LetterDigit"), null), new TokenReadyForOther());
         //OTHER
         commands.put(new Pair<>(new State("OTHER"), null), new Other());
@@ -44,7 +44,6 @@ public class CommandRepository {
             if (Character.isLetterOrDigit(symbol)) {
                 return commands.get(new Pair<>(state, '±'));
             }
-
             return commands.get(new Pair<>(state, null));
         }
         return commands.get(new Pair<>(state, symbol));
