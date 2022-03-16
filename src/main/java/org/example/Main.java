@@ -27,7 +27,8 @@ public class Main {
         ) {
 
             Lexer lexer = new Lexer(fileReader, fileWriter);
-            lexer.readToken();
+            IFormatter formatter = new Formatter(lexer, fileWriter);
+            formatter.format(lexer, fileWriter);
 
         } catch (ReaderException e) {
             logger.error("Exception while read/write file: {}", e.toString());
