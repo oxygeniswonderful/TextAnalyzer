@@ -5,12 +5,19 @@ import org.example.Writer.WriterException;
 
 public class FormatterContext {
     private IWriter writer;
-    private int count = 0;
-    private String indent;
+    
 
+    public String getIndent() {
+        return indent.toString();
+    }
+
+    private int count;
+    private StringBuilder indent;
 
     public FormatterContext(IWriter writer) {
         this.writer = writer;
+        this.indent = new StringBuilder();
+        this.count = 0;
     }
 
     public void setCount(int count) {
@@ -18,7 +25,6 @@ public class FormatterContext {
     }
 
     public String createIndent() {
-        StringBuilder indent = new StringBuilder();
         for (int i = 0; i < count; i++)
             indent.append(" ");
         return indent.toString();
