@@ -7,7 +7,6 @@ public class LineBreak implements ICommandFormatter{
     @Override
     public void execute(IToken token, FormatterContext formatterContext) {
 
-        formatterContext.setIsComment(0);
         System.out.print(token.getLexeme());
         formatterContext.WriteLexeme(token.getLexeme());
         formatterContext.WriteLexeme(formatterContext.getIndent());
