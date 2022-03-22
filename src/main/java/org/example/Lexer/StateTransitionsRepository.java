@@ -14,17 +14,18 @@ public class StateTransitionsRepository {
         //State = 0
         //stateTransitions.put(new Pair<>(new State("initial"), ' '), new State("END"));
         stateTransitions.put(new Pair<>(new State("initial"), '/'), new State("SLASH"));
-        //stateTransitions.put(new Pair<>(new State("initial"), '±'), new State("LetterDigit"));
+        stateTransitions.put(new Pair<>(new State("initial"), '±'), new State("LetterDigit"));
         //stateTransitions.put(new Pair<>(new State("initial"), '{'), new State("BRACKET"));
         //stateTransitions.put(new Pair<>(new State("initial"), '}'), new State("END"));
         //stateTransitions.put(new Pair<>(new State("initial"), ';'), new State("END"));
         //stateTransitions.put(new Pair<>(new State("initial"), '\n'), new State("END"));
+        stateTransitions.put(new Pair<>(new State("initial"), '*'), new State("STAR"));
         stateTransitions.put(new Pair<>(new State("initial"), null), new State("OTHER"));
 
         //State = /
         //stateTransitions.put(new Pair<>(new State("SLASH"), '/'), new State("END"));
         //stateTransitions.put(new Pair<>(new State("SLASH"), null), new State("END"));
-        stateTransitions.put(new Pair<>(new State("SLASH"), '*'), new State("OTHER"));
+        //stateTransitions.put(new Pair<>(new State("SLASH"), '*'), new State("END"));
         //stateTransitions.put(new Pair<>(new State("SLASH"), '±'), new State("END"));
         //stateTransitions.put(new Pair<>(new State("SLASH"), ' '), new State("END"));
 
@@ -34,6 +35,7 @@ public class StateTransitionsRepository {
 
         //State = Other
         stateTransitions.put(new Pair<>(new State("OTHER"), null), new State("OTHER"));
+        //stateTransitions.put(new Pair<>(new State("OTHER"), '*'), new State("STAR"));
         /*stateTransitions.put(new Pair<>(new State("OTHER"), ' '), new State("END"));
         stateTransitions.put(new Pair<>(new State("OTHER"), '\n'), new State("END"));
         stateTransitions.put(new Pair<>(new State("OTHER"), '±'), new State("END"));
@@ -41,6 +43,9 @@ public class StateTransitionsRepository {
         stateTransitions.put(new Pair<>(new State("OTHER"), '}'),new State("END"));
         stateTransitions.put(new Pair<>(new State("OTHER"), ';'), new State("END"));
         stateTransitions.put(new Pair<>(new State("OTHER"), '*'), new State("END")); */
+
+        //State = Star
+        //stateTransitions.put(new Pair<>(new State("STAR"), '/'), new State("END"));
 
     }
     public State getNextState(State state, char symbol) {

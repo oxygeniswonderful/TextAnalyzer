@@ -44,7 +44,7 @@ public class Lexer implements ILexer {
             state = stateMachineStep(reader, state, lexerContext);
         }
 
-        System.out.println(lexerContext.getTokenLexeme().toString() + " LEXER");
+        System.out.println(lexerContext.getTokenLexeme().toString() + " " + lexerContext.getTokenName() + " LEXER");
         return new TokenImpl(lexerContext.getTokenName(), lexerContext.getTokenLexeme().toString());
     }
 

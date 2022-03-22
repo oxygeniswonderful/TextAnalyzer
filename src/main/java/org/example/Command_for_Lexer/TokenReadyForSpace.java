@@ -7,5 +7,6 @@ public class TokenReadyForSpace implements ICommand{
     public void execute(char symbol, LexerContext lexerContext) {
         lexerContext.setTokenName("Space");
         lexerContext.append(symbol);
+        lexerContext.cleanBuffer();
     }
 }

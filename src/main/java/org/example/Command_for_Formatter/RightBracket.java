@@ -11,7 +11,7 @@ public class RightBracket implements ICommandFormatter{
         formatterContext.WriteLexeme(formatterContext.getIndent());
         formatterContext.WriteLexeme(token.getLexeme());
         formatterContext.WriteLexeme("\n");
-        System.out.println(formatterContext.getIndent());
-        System.out.println(token.getLexeme());
+        //System.out.println(formatterContext.getIndent());
+        //System.out.println(token.getLexeme());
     }
 }

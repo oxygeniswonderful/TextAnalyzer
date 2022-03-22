@@ -12,7 +12,7 @@ public class LeftBracket implements ICommandFormatter{
         formatterContext.WriteLexeme(token.getLexeme());
         formatterContext.WriteLexeme("\n");
         formatterContext.WriteLexeme(formatterContext.getIndent());
-        System.out.println(token.getLexeme());
-        System.out.println(formatterContext.getIndent());
+        //System.out.println(token.getLexeme());
+        //System.out.println(formatterContext.getIndent());
     }
 }

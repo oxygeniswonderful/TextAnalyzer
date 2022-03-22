@@ -7,5 +7,6 @@ public class TokenReadyForLeftBracket implements ICommand{
     public void execute(char symbol, LexerContext lexerContext) {
         lexerContext.setTokenName("LeftBracket");
         lexerContext.append(symbol);
+        lexerContext.cleanBuffer();
     }
 }

@@ -10,6 +10,6 @@ public class LineBreak implements ICommandFormatter{
         System.out.print(token.getLexeme());
         formatterContext.WriteLexeme(token.getLexeme());
         formatterContext.WriteLexeme(formatterContext.getIndent());
-        System.out.print(formatterContext.getIndent());
+        //System.out.print(formatterContext.getIndent());
     }
 }

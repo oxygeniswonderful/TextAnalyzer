@@ -7,5 +7,6 @@ public class TokenReadyForSemicolon implements ICommand{
     public void execute(char symbol, LexerContext lexerContext) {
         lexerContext.append(symbol);
         lexerContext.setTokenName("Semicolon");
+        lexerContext.cleanBuffer();
     }
 }

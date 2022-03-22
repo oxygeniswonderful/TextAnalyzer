@@ -7,5 +7,6 @@ public class TokenReadyForRightBracket implements ICommand{
     public void execute(char symbol, LexerContext lexerContext) {
         lexerContext.setTokenName("RightBracket");
         lexerContext.append(symbol);
+        lexerContext.cleanBuffer();
     }
 }

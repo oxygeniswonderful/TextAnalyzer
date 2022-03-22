@@ -7,5 +7,6 @@ public class TokenReadyForLineBreak implements ICommand{
     public void execute(char symbol, LexerContext lexerContext) {
         lexerContext.setTokenName("LINE BREAK");
         lexerContext.append(symbol);
+        lexerContext.cleanBuffer();
     }
 }

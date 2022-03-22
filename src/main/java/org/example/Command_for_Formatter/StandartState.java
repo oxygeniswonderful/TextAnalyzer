@@ -7,6 +7,6 @@ public class StandartState implements ICommandFormatter{
     @Override
     public void execute(IToken token, FormatterContext formatterContext) {
         formatterContext.WriteLexeme(token.getLexeme());
-        System.out.print(token.getLexeme());
+        //System.out.print(token.getLexeme());
     }
 }
