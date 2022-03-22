@@ -1,14 +1,12 @@
 package org.example.Lexer;
 
-import org.example.Command_for_Lexer.CommandRepository;
-import org.example.Command_for_Lexer.ICommand;
 import org.example.Format.State;
-import org.example.Reader.ReaderException;
-import org.example.Reader.StringReaderImpl;
+import org.example.Lexer.commands.ICommand;
+import org.example.io.Reader.ReaderException;
+import org.example.io.Reader.StringReaderImpl;
 import org.example.Token.IToken;
 import org.example.Token.TokenImpl;
-import org.example.Reader.IReader;
-import org.example.Writer.IWriter;
+import org.example.io.Reader.IReader;
 
 public class Lexer implements ILexer {
     private final IReader reader;
@@ -16,9 +14,9 @@ public class Lexer implements ILexer {
     private StateTransitionsRepository stateTransitionsRepository;
     private LexerContext lexerContext;
 
-    public Lexer(IReader reader, IWriter writer) {
+    public Lexer(IReader reader) {
         this.reader = reader;
-        this.lexerContext = new LexerContext(writer);
+        this.lexerContext = new LexerContext();
         commandRepository = new CommandRepository();
         stateTransitionsRepository = new StateTransitionsRepository();
     }

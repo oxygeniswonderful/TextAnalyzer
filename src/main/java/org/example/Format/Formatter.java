@@ -1,11 +1,11 @@
 package org.example.Format;
-import org.example.Command_for_Formatter.CommandRepositoryFormatter;
-import org.example.Command_for_Formatter.ICommandFormatter;
+import org.example.Format.commands.CommandRepositoryFormatter;
+import org.example.Format.commands.ICommandFormatter;
 import org.example.Lexer.ILexer;
-import org.example.Reader.ReaderException;
+import org.example.io.Reader.ReaderException;
 import org.example.Token.IToken;
-import org.example.Writer.IWriter;
-import org.example.Writer.WriterException;
+import org.example.io.Writer.IWriter;
+import org.example.io.Writer.WriterException;
 
 
 public class Formatter implements IFormatter{

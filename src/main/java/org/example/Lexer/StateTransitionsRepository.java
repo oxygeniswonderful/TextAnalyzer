@@ -1,65 +1,44 @@
 package org.example.Lexer;
 
-import org.example.Command_for_Lexer.Pair;
+import org.example.Pair;
 import org.example.Format.State;
-import org.example.Format.Tools;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class StateTransitionsRepository {
-    private Map<Pair<State, Character>, State> stateTransitions = new HashMap<>();
+    private final Map<Pair<State, Character>, State> stateTransitions = new HashMap<>();
 
     public StateTransitionsRepository() {
-        //State = 0
-        //stateTransitions.put(new Pair<>(new State("initial"), ' '), new State("END"));
-        stateTransitions.put(new Pair<>(new State("initial"), '/'), new State("SLASH"));
-        stateTransitions.put(new Pair<>(new State("initial"), '±'), new State("LetterDigit"));
-        //stateTransitions.put(new Pair<>(new State("initial"), '{'), new State("BRACKET"));
-        //stateTransitions.put(new Pair<>(new State("initial"), '}'), new State("END"));
-        //stateTransitions.put(new Pair<>(new State("initial"), ';'), new State("END"));
-        //stateTransitions.put(new Pair<>(new State("initial"), '\n'), new State("END"));
-        stateTransitions.put(new Pair<>(new State("initial"), '*'), new State("STAR"));
-        stateTransitions.put(new Pair<>(new State("initial"), null), new State("OTHER"));
+        //initial
+        stateTransitions.put(new Pair<>(new State("initial"), null), null);
+        stateTransitions.put(new Pair<>(new State("initial"), ' '), new State("spacing"));
+        stateTransitions.put(new Pair<>(new State("initial"), '/'), new State("slash"));
+        stateTransitions.put(new Pair<>(new State("initial"), '{'), null);
+        stateTransitions.put(new Pair<>(new State("initial"), '}'), null);
+        stateTransitions.put(new Pair<>(new State("initial"), '('), null);
+        stateTransitions.put(new Pair<>(new State("initial"), ')'), null);
+        stateTransitions.put(new Pair<>(new State("initial"), ';'), null);
+        stateTransitions.put(new Pair<>(new State("initial"), '\n'), null);
+        stateTransitions.put(new Pair<>(new State("initial"), '*'), new State("star"));
+        stateTransitions.put(new Pair<>(new State("initial"), '"'), null);
 
-        //State = /
-        //stateTransitions.put(new Pair<>(new State("SLASH"), '/'), new State("END"));
-        //stateTransitions.put(new Pair<>(new State("SLASH"), null), new State("END"));
-        //stateTransitions.put(new Pair<>(new State("SLASH"), '*'), new State("END"));
-        //stateTransitions.put(new Pair<>(new State("SLASH"), '±'), new State("END"));
-        //stateTransitions.put(new Pair<>(new State("SLASH"), ' '), new State("END"));
+        //spacing
+        stateTransitions.put(new Pair<>(new State("spacing"), null), null);
+        stateTransitions.put(new Pair<>(new State("spacing"), ' '), new State("spacing"));
 
-        //State = Letter or Digit
-        stateTransitions.put(new Pair<>(new State("LetterDigit"), '±'), new State("LetterDigit"));
-        //stateTransitions.put(new Pair<>(new State("LetterDigit"), null), new State("END"));
+        //slash
+        stateTransitions.put(new Pair<>(new State("slash"), null), null);
+        stateTransitions.put(new Pair<>(new State("slash"), '/'), null);
+        stateTransitions.put(new Pair<>(new State("slash"), '*'), null);
 
-        //State = Other
-        stateTransitions.put(new Pair<>(new State("OTHER"), null), new State("OTHER"));
-        //stateTransitions.put(new Pair<>(new State("OTHER"), '*'), new State("STAR"));
-        /*stateTransitions.put(new Pair<>(new State("OTHER"), ' '), new State("END"));
-        stateTransitions.put(new Pair<>(new State("OTHER"), '\n'), new State("END"));
-        stateTransitions.put(new Pair<>(new State("OTHER"), '±'), new State("END"));
-        stateTransitions.put(new Pair<>(new State("OTHER"), '{'),new State("END"));
-        stateTransitions.put(new Pair<>(new State("OTHER"), '}'),new State("END"));
-        stateTransitions.put(new Pair<>(new State("OTHER"), ';'), new State("END"));
-        stateTransitions.put(new Pair<>(new State("OTHER"), '*'), new State("END")); */
-
-        //State = Star
-        //stateTransitions.put(new Pair<>(new State("STAR"), '/'), new State("END"));
-
+        //star
+        stateTransitions.put(new Pair<>(new State("star"), null), null);
+        stateTransitions.put(new Pair<>(new State("star"), '/'), null);
     }
     public State getNextState(State state, char symbol) {
         if (stateTransitions.get(new Pair<>(state, symbol)) == null) {
-            if (Character.isLetterOrDigit(symbol)) {
-                return stateTransitions.get(new Pair<>(state, '±'));
-            }
-            if (Tools.isLeftBrace(String.valueOf(symbol))) {
-                return stateTransitions.get(new Pair<>(state, '{'));
-            }
-            if (Tools.isRightBrace(String.valueOf(symbol))) {
-                return stateTransitions.get(new Pair<>(state, '}'));
-            }
-            return stateTransitions.get(new Pair<>(state, null));
+            return stateTransitions.get(new Pair<>(state, (Character) null));
         }
         return stateTransitions.get(new Pair<>(state, symbol));
     }

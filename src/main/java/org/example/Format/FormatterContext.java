@@ -1,7 +1,7 @@
 package org.example.Format;
 
-import org.example.Writer.IWriter;
-import org.example.Writer.WriterException;
+import org.example.io.Writer.IWriter;
+import org.example.io.Writer.WriterException;
 
 public class FormatterContext {
     private IWriter writer;

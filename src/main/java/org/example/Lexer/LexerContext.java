@@ -1,23 +1,15 @@
 package org.example.Lexer;
 
-import org.example.Token.IToken;
-import org.example.Token.TokenImpl;
-import org.example.Writer.IWriter;
-
 public class LexerContext {
     private String tokenName;
     private StringBuilder tokenLexeme;
     private StringBuilder buffer;
-    private IToken token;
-    private IWriter writer;
 
-    public LexerContext(IWriter writer) {
+    public LexerContext() {
         this.tokenName = "";
         this.tokenLexeme = new StringBuilder();
         this.buffer = new StringBuilder();
-        this.writer = writer;
     }
-
 
     public String getTokenName() {
         return tokenName;
@@ -49,10 +41,6 @@ public class LexerContext {
 
     public StringBuilder getBuffer(){
         return buffer;
-    }
-
-    public void setToken(String tokenName, StringBuilder tokenLexeme) {
-        token = new TokenImpl(tokenName, tokenLexeme.toString());
     }
 
     @Override

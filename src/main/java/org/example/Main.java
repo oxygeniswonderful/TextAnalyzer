@@ -3,9 +3,9 @@ package org.example;
 import org.example.Format.Formatter;
 import org.example.Format.IFormatter;
 import org.example.Lexer.Lexer;
-import org.example.Reader.FileReaderImpl;
-import org.example.Reader.ReaderException;
-import org.example.Writer.FileWriterImpl;
+import org.example.io.Reader.FileReaderImpl;
+import org.example.io.Reader.ReaderException;
+import org.example.io.Writer.FileWriterImpl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,7 +28,7 @@ public class Main {
                 FileWriterImpl fileWriter = new FileWriterImpl(new BufferedWriter(new FileWriter(PATH_OF_ANSWER, StandardCharsets.UTF_8)));
         ) {
 
-            Lexer lexer = new Lexer(fileReader, fileWriter);
+            Lexer lexer = new Lexer(fileReader);
             IFormatter formatter = new Formatter(lexer, fileWriter);
             formatter.format(lexer, fileWriter);
 

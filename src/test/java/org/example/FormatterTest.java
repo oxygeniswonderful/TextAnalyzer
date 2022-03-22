@@ -2,10 +2,9 @@ package org.example;
 
 import org.example.Lexer.ILexer;
 import org.example.Lexer.Lexer;
-import org.example.Reader.ReaderException;
-import org.example.Reader.StringReaderImpl;
-import org.example.Writer.StringWriterImpl;
-import org.example.Writer.WriterException;
+import org.example.io.Reader.ReaderException;
+import org.example.io.Reader.StringReaderImpl;
+import org.example.io.Writer.WriterException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,8 +44,7 @@ class FormatterTest {
     void init(String string, String expected) throws WriterException, ReaderException {
         StringReaderImpl stringReader = new StringReaderImpl(string);
         StringBuilder stringBuilder = new StringBuilder();
-        StringWriterImpl stringWriter = new StringWriterImpl(stringBuilder);
-        ILexer lexer = new Lexer(stringReader, stringWriter);
+        ILexer lexer = new Lexer(stringReader);
         lexer.readToken();
         //System.out.println(stringBuilder.toString());
         assertEquals(stringBuilder.toString(), expected);

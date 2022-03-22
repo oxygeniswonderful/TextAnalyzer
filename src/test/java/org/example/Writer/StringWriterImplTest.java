@@ -1,5 +1,7 @@
 package org.example.Writer;
 
+import org.example.io.Writer.StringWriterImpl;
+import org.example.io.Writer.WriterException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

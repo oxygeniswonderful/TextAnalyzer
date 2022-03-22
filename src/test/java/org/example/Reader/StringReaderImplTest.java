@@ -1,5 +1,7 @@
 package org.example.Reader;
 
+import org.example.io.Reader.ReaderException;
+import org.example.io.Reader.StringReaderImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,6 +1,6 @@
 package org.example.Format;
 
-import org.example.Command_for_Lexer.Pair;
+import org.example.Pair;
 import org.example.Token.IToken;
 import org.example.Token.TokenImpl;
 
@@ -103,7 +103,7 @@ public class StateTransitionsRepositoryFormatter {
 
     public State getNextState(State state, IToken token) {
         if (stateTransitionsFormatter.get(new Pair<>(state, token)) == null) {
-            return stateTransitionsFormatter.get(new Pair<>(state, null));
+            return stateTransitionsFormatter.get(new Pair<>(state, (IToken) null));
         }
         return stateTransitionsFormatter.get(new Pair<>(state, token));
     }

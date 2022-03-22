@@ -1,7 +1,7 @@
 package org.example.Lexer;
 
 import org.example.Token.IToken;
-import org.example.Reader.ReaderException;
+import org.example.io.Reader.ReaderException;
 
 public interface ILexer {
     boolean hasMoreTokens() throws ReaderException;
