@@ -22,10 +22,35 @@ public class StateTransitionsRepository {
         stateTransitions.put(new Pair<>(new State("initial"), '\n'), null);
         stateTransitions.put(new Pair<>(new State("initial"), '*'), new State("star"));
         stateTransitions.put(new Pair<>(new State("initial"), '"'), null);
+        stateTransitions.put(new Pair<>(new State("initial"), 'f'), new State("f"));
+
+        //f
+        stateTransitions.put(new Pair<>(new State("f"), 'o'), new State("o"));
+        stateTransitions.put(new Pair<>(new State("f"), null), null);
+
+        //o
+        stateTransitions.put(new Pair<>(new State("o"), 'r'), new State("r"));
+        stateTransitions.put(new Pair<>(new State("o"), null), null);
+
+        //r
+        stateTransitions.put(new Pair<>(new State("r"), null), null);
 
         //spacing
         stateTransitions.put(new Pair<>(new State("spacing"), null), null);
         stateTransitions.put(new Pair<>(new State("spacing"), ' '), new State("spacing"));
+
+        //char
+        /*stateTransitions.put(new Pair<>(new State("char"), null), new State("char"));
+        stateTransitions.put(new Pair<>(new State("char"), ' '), null);
+        stateTransitions.put(new Pair<>(new State("char"), '/'), null);
+        stateTransitions.put(new Pair<>(new State("char"), '{'), null);
+        stateTransitions.put(new Pair<>(new State("char"), '}'), null);
+        stateTransitions.put(new Pair<>(new State("char"), '('), null);
+        stateTransitions.put(new Pair<>(new State("char"), ')'), null);
+        stateTransitions.put(new Pair<>(new State("char"), ';'), null);
+        stateTransitions.put(new Pair<>(new State("char"), '\n'), null);
+        stateTransitions.put(new Pair<>(new State("char"), '*'), null);
+        stateTransitions.put(new Pair<>(new State("char"), '"'), null); */
 
         //slash
         stateTransitions.put(new Pair<>(new State("slash"), null), null);

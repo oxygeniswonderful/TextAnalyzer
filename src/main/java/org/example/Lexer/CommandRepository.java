@@ -6,6 +6,7 @@ import org.example.Lexer.commands.Char;
 import org.example.Lexer.commands.CloseBrace;
 import org.example.Lexer.commands.CloseBracket;
 import org.example.Lexer.commands.CloseMultilineComment;
+import org.example.Lexer.commands.For;
 import org.example.Lexer.commands.ICommand;
 import org.example.Lexer.commands.NewLine;
 import org.example.Lexer.commands.OneLineComment;
@@ -37,6 +38,41 @@ public class CommandRepository {
         commands.put(new Pair<>(new State("initial"), '\n'), new NewLine());
         commands.put(new Pair<>(new State("initial"), '*'), new Char());
         commands.put(new Pair<>(new State("initial"), '"'), new QuoteMark());
+        commands.put(new Pair<>(new State("initial"), 'f'), new Char());
+
+        //f
+        commands.put(new Pair<>(new State("f"), 'o'), new Char());
+        commands.put(new Pair<>(new State("f"), null), new AppendPostpone());
+
+        //o
+        commands.put(new Pair<>(new State("o"), 'r'), new Char());
+        commands.put(new Pair<>(new State("o"), null), new AppendPostpone());
+
+        //r
+        commands.put(new Pair<>(new State("r"), null), new Char());
+        commands.put(new Pair<>(new State("r"), ' '), new For());
+        commands.put(new Pair<>(new State("r"), '/'), new For());
+        commands.put(new Pair<>(new State("r"), '*'), new For());
+        commands.put(new Pair<>(new State("r"), '{'), new For());
+        commands.put(new Pair<>(new State("r"), '}'), new For());
+        commands.put(new Pair<>(new State("r"), '('), new For());
+        commands.put(new Pair<>(new State("r"), ')'), new For());
+        commands.put(new Pair<>(new State("r"), ';'), new For());
+        commands.put(new Pair<>(new State("r"), '\n'), new For());
+        commands.put(new Pair<>(new State("r"), '"'), new For());
+
+        //char
+        /*commands.put(new Pair<>(new State("char"), null), new Char());
+        commands.put(new Pair<>(new State("char"), ' '), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '/'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '*'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '{'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '}'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '('), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), ')'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), ';'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '\n'), new AppendPostpone());
+        commands.put(new Pair<>(new State("char"), '"'), new AppendPostpone()); */
 
         //spacing
         commands.put(new Pair<>(new State("spacing"), null), new AppendPostpone());

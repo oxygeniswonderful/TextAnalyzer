@@ -16,7 +16,7 @@ class LexerTest {
 
     @Test
     void testLexer() throws ReaderException {
-        reader = new StringReaderImpl("   abc; //\n");
+        reader = new StringReaderImpl("   abc;for //\n");
         lexer = new Lexer(reader);
 
         IToken token = lexer.readToken();
@@ -38,6 +38,10 @@ class LexerTest {
         token = lexer.readToken();
         assertEquals(";", token.getLexeme());
         assertEquals("semicolon", token.getName());
+
+        token = lexer.readToken();
+        assertEquals("for", token.getLexeme());
+        assertEquals("for", token.getName());
 
         token = lexer.readToken();
         assertEquals(" ", token.getLexeme());
